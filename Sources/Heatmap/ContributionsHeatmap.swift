@@ -10,11 +10,12 @@ import Charts
 
 public struct ContributionsHeatmap: View {
 
-    private let data: [ContributionsHeatmapEntry]
-
     private let markInsets: MarkInsets
 
     private let markCornerRadius: CGFloat
+
+    @State
+    private var data: [ContributionsHeatmapEntry]
 
     @Environment(\.calendar)
     private var calendar
@@ -25,6 +26,7 @@ public struct ContributionsHeatmap: View {
         data: [ContributionsHeatmapEntry]
     ) {
         self.data = data
+
         self.markInsets = markInsets
         self.markCornerRadius = markCornerRadius
     }
@@ -42,6 +44,11 @@ public struct ContributionsHeatmap: View {
         }
         .chartXAxis { xAxis }
         .chartYAxis { yAxis }
+        .onChange(of: calendar, initial: true) { _, calendar in
+            data = Array(data.drop(while: {
+                Int($0.dayOfWeek) != calendar.firstWeekday
+            }))
+        }
     }
 
 }
@@ -72,7 +79,7 @@ private extension ContributionsHeatmap {
         let components = DateComponents(
             calendar: calendar,
             year: year,
-            weekday: 1,
+            weekday: calendar.firstWeekday,
             weekOfYear: weekOfYear
         )
 
@@ -108,7 +115,7 @@ private extension ContributionsHeatmap {
 
 // MARK: - Previews
 
-#Preview {
+#Preview("ContributionsHeatmap") {
     ContributionsHeatmap(
         data: .previewFullYear
     )
@@ -159,6 +166,21 @@ private extension ContributionsHeatmap {
             width: 750,
             height: 130
         )
+    }
+    .padding()
+}
+
+#Preview("All weekdays") {
+    VStack {
+        ForEach(0..<7) { offset in
+            ContributionsHeatmap(data: .previewFullYear(from: Date.now.addingTimeInterval(TimeInterval(offset) * 24 * 60 * 60)))
+                .chartForegroundStyleScale(.gitHub)
+                .chartLegend(.hidden)
+                .frame(
+                    width: 750,
+                    height: 115
+                )
+        }
     }
     .padding()
 }

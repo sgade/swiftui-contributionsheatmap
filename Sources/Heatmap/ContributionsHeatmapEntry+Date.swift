@@ -41,15 +41,16 @@ extension [ContributionsHeatmapEntry] {
     }
 
     static func previewFullYear(from reference: Date) -> Self {
-        let values = (0..<365).compactMap { offset in
-            let date = reference.addingTimeInterval(Double(24 * 60 * 60 * offset))
+        (0..<365)
+            .reversed()
+            .compactMap { offset in
+                let date = reference.addingTimeInterval(Double(24 * 60 * 60 * -offset))
 
-            return ContributionsHeatmapEntry(
-                on: date,
-                level: ContributionLevel.allCases.randomElement() ?? .none
-            )
-        }
-        return values
+                return ContributionsHeatmapEntry(
+                    on: date,
+                    level: ContributionLevel.allCases.randomElement() ?? .none
+                )
+            }
     }
 
 }

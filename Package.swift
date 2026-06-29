@@ -5,12 +5,12 @@ import PackageDescription
 let package = Package(
     name: "ContributionsHeatmap",
     platforms: [
-        .iOS(.v16),
-        .macCatalyst(.v16),
-        .macOS(.v13),
-        .tvOS(.v16),
-        .visionOS(.v1),
-        .watchOS(.v9)
+        .iOS(.v17),
+        .macCatalyst(.v17),
+        .macOS(.v14),
+        .tvOS(.v17),
+        .visionOS(.v2),
+        .watchOS(.v10)
     ],
     products: [
         .library(

@@ -2,17 +2,17 @@
 
 A heatmap in the style of GitHub's contributions heatmap on each user profile.
 
-![Screenshot of a contributions heatmap](screenshot.jpg)
+![Screenshot of a contributions heatmap](ContributionsHeatmap.jpg)
 
 ## Requirements
 
-This package uses Swift Charts under the hood, and has the same requirements:
+This package uses Swift Charts under the hood, and has the following requirements:
 
-- macOS 13
-- iOS 16
-- tvOS 16
-- watchOS 9
-- visionOS 1
+- macOS 14
+- iOS 17
+- tvOS 17
+- watchOS 10
+- visionOS 2
 
 ## Installation
 
