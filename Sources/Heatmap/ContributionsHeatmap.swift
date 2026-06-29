@@ -44,3 +44,10 @@ public struct ContributionsHeatmap: View {
 #Preview {
     ContributionsHeatmap(data: .preview)
 }
+
+#Preview("Full year") {
+    ContributionsHeatmap(
+        markInsets: .init(horizontal: 2, vertical: 2),
+        data: .previewFullYear
+    )
+}
