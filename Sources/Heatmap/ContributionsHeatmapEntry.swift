@@ -11,18 +11,18 @@ public struct ContributionsHeatmapEntry: Identifiable, Equatable, Sendable {
 
     public let dayOfWeek: String
 
-    public let value: Double
+    public let level: ContributionLevel
 
-    public var id: String { "\(week)-\(dayOfWeek): \(value)" }
+    public var id: String { "\(week)-\(dayOfWeek): \(level.rawValue)" }
 
     public init(
         week: String,
         dayOfWeek: String,
-        value: Double
+        level: ContributionLevel
     ) {
         self.week = week
         self.dayOfWeek = dayOfWeek
-        self.value = value
+        self.level = level
     }
 
 }

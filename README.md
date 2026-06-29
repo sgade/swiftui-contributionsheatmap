@@ -46,15 +46,13 @@ ContributionsHeatmap(
 You can use the standard `Charts` modifiers to customize the heatmap.
 Examples of this include `chartXAxis(.hidden)`, `chartYAxis(.hidden)`, `.chartLegend(.hidden)`.
 
-If you wish to customize the default Swift Charts colors, you can make it look like GitHub:
+If you wish to customize the default Swift Charts colors, you can make it look like GitHub or GitLab:
 
-![GitHub-style](github.jpg)
+![GitHub- and GitLab-style](colorschemes.jpg)
 
 ```swift
 ContributionsHeatmap(data: ...)
-    .chartForegroundStyleScale { (value: Double) in
-        // define the color based on the value
-    }
+    .chartForegroundStyleScale(.gitHub)
 ```
 
 ## LICENSE
