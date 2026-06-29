@@ -12,8 +12,14 @@ public struct ContributionsHeatmap: View {
 
     public let data: [ContributionsHeatmapEntry]
 
-    init(data: [ContributionsHeatmapEntry]) {
+    public let markInsets: MarkInsets
+
+    init(
+        markInsets: MarkInsets = MarkInsets(horizontal: 1, vertical: 1),
+        data: [ContributionsHeatmapEntry]
+    ) {
         self.data = data
+        self.markInsets = markInsets
     }
 
     public var body: some View {
@@ -21,8 +27,8 @@ public struct ContributionsHeatmap: View {
             RectangleMark(
                 x: .value("Week", entry.week),
                 y: .value("Day of week", entry.dayOfWeek),
-                width: .inset(1), // TODO: add modifier for spacing
-                height: .inset(1)
+                width: .inset(markInsets.horizontal),
+                height: .inset(markInsets.vertical)
             )
             .foregroundStyle(by: .value("Value", entry.value))
         }
