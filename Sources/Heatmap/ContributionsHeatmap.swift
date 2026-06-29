@@ -1,3 +1,10 @@
+//
+//  ContributionsHeatmap.swift
+//  ContributionsHeatmap
+//
+//  Created by Sören Gade on 28.06.26.
+//
+
 import SwiftUI
 import Charts
 
@@ -14,56 +21,14 @@ public struct ContributionsHeatmap: View {
             RectangleMark(
                 x: .value("Week", entry.week),
                 y: .value("Day of week", entry.dayOfWeek),
-                width: .fixed(100),
-                height: .fixed(100)
+                width: .inset(1), // TODO: add modifier for spacing
+                height: .inset(1)
             )
             .foregroundStyle(by: .value("Value", entry.value))
         }
-    }
-
-}
-
-// MARK: - ContributionsHeatmapEntry
-
-public struct ContributionsHeatmapEntry: Identifiable {
-
-    public let week: String
-
-    public let dayOfWeek: String
-
-    public let value: Double
-
-    public var id: String { "\(week)-\(dayOfWeek): \(value)" }
-
-}
-
-// MARK: Preview data
-
-private extension [ContributionsHeatmapEntry] {
-
-    static var preview: Self {
-        [
-            ContributionsHeatmapEntry(
-                week: "0",
-                dayOfWeek: "0",
-                value: 1
-            ),
-            ContributionsHeatmapEntry(
-                week: "1",
-                dayOfWeek: "0",
-                value: 10
-            ),
-            ContributionsHeatmapEntry(
-                week: "1",
-                dayOfWeek: "1",
-                value: 5
-            ),
-            ContributionsHeatmapEntry(
-                week: "1",
-                dayOfWeek: "3",
-                value: 1
-            )
-        ]
+        .chartLegend(.hidden)
+        .chartXAxis(.hidden)
+        .chartYAxis(.hidden)
     }
 
 }
