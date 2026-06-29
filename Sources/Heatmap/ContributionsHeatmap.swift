@@ -35,7 +35,6 @@ public struct ContributionsHeatmap: View {
             )
             .foregroundStyle(by: .value("Value", entry.value))
         }
-        .chartLegend(.hidden)
         .chartXAxis { xAxis }
         .chartYAxis { yAxis }
     }
