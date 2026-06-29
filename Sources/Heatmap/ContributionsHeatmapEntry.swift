@@ -5,7 +5,7 @@
 //  Created by Sören Gade on 29.06.26.
 //
 
-public struct ContributionsHeatmapEntry: Identifiable {
+public struct ContributionsHeatmapEntry: Identifiable, Equatable, Sendable {
 
     public let week: String
 

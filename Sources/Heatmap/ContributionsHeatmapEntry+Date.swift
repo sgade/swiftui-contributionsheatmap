@@ -44,7 +44,7 @@ extension [ContributionsHeatmapEntry] {
 
             return ContributionsHeatmapEntry(
                 on: date,
-                value: Double.random(in: 0...10)
+                value: Double.random(in: 0...30)
             )
         }
         return values
