@@ -18,7 +18,7 @@ public struct ContributionsHeatmap: View {
     private var calendar
 
     init(
-        markInsets: MarkInsets = MarkInsets(horizontal: 1, vertical: 1),
+        markInsets: MarkInsets = MarkInsets(horizontal: 1.5, vertical: 1.5),
         data: [ContributionsHeatmapEntry]
     ) {
         self.data = data
@@ -34,9 +34,11 @@ public struct ContributionsHeatmap: View {
                 height: .inset(markInsets.vertical)
             )
             .foregroundStyle(by: .value("Value", entry.value))
+            .clipShape(RoundedRectangle(cornerRadius: 3))
         }
         .chartXAxis { xAxis }
         .chartYAxis { yAxis }
+        .foregroundStyle(.blue)
     }
 
 }
@@ -103,10 +105,6 @@ private extension ContributionsHeatmap {
 
 // MARK: - Previews
 
-#Preview {
-    ContributionsHeatmap(data: .preview)
-}
-
 #Preview("Full year") {
     ContributionsHeatmap(
         data: .previewFullYear
@@ -127,4 +125,32 @@ private extension ContributionsHeatmap {
         )
         .frame(minWidth: 1920)
     }
+}
+
+#Preview("GitHub") {
+    ContributionsHeatmap(data: .previewFullYear)
+        .chartForegroundStyleScale { (value: Double) in
+            switch value {
+            case 0:
+                Color(.sRGB, red: 239.0 / 255.0, green: 242.0 / 255.0, blue: 245.0 / 255.0, opacity: 1.0)
+
+            case 0..<10:
+                Color(.sRGB, red: 172.0 / 255.0, green: 238.0 / 255.0, blue: 187.0 / 255.0, opacity: 1.0)
+
+            case 10..<20:
+                Color(.sRGB, red: 74.0 / 255.0, green: 194.0 / 255.0, blue: 107.0 / 255.0, opacity: 1.0)
+
+            case 20..<30:
+                Color(.sRGB, red: 45.0 / 255.0, green: 164.0 / 255.0, blue: 78.0 / 255.0, opacity: 1.0)
+
+            case 30:
+                fallthrough
+            default:
+                Color(.sRGB, red: 17.0 / 255.0, green: 99.0 / 255.0, blue: 41.0 / 255.0, opacity: 1.0)
+            }
+        }
+        .frame(
+            width: 800,
+            height: 120
+        )
 }
